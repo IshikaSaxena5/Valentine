@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Will You Be My Valentine? 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 22px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Card */
+    .card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      width: 90%;
+      max-width: 380px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+      animation: popIn 1s ease forwards;
+      z-index: 10;
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0.3);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    /* Buttons */
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    button {
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background: #ff4d6d;
+      color: white;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    .yes:hover {
+      transform: scale(1.15);
+    }
+
+    .no {
+      background: #eee;
+      position: relative;
+    }
+
+    /* Success screen */
+    .success {
+      display: none;
+      animation: popIn 0.6s ease forwards;
+    }
+
+    .success h1 {
+      font-size: 26px;
+    }
+    .love-you {
+  margin-top: 22px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #ff4d6d;
+  opacity: 0;
+  animation: lovePop 1.3s ease forwards;
+  animation-delay: 0.6s;
+  text-shadow: 0 0 12px rgba(255, 77, 109, 0.6);
+}
+
+.love-you span {
+  color: #ff2f68;
+}
+
+@keyframes lovePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-5deg);
+  }
+  70% {
+    transform: scale(1.15) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+.memories-btn {
+  margin-top: 25px;
+  padding: 12px 26px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, #ff4d6d, #ff7eb3);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.memories-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Memories overlay */
+.memories {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.memories-box {
+  width: 90%;
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 20px;
+  padding: 25px;
+  overflow-y: auto;
+  animation: slideUp 0.6s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.memories-box h2 {
+  text-align: center;
+  color: #ff4d6d;
+  margin-bottom: 15px;
+}
+
+.memory {
+  background: #fff0f4;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  width:20%;
+}
+
+.close {
+  text-align: center;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #ff4d6d;
+  font-weight: 600;
+}
+.memory p{
+word-wrap: break-all;
+}
+.memory img{
+  border-radius: 8px;
+  width: 100%;
+  height: 350px;
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <span class="heart" style="left: 10%; animation-delay: 0s;">❤️</span>
+  <span class="heart" style="left: 25%; animation-delay: 1s;">💖</span>
+  <span class="heart" style="left: 40%; animation-delay: 2s;">❤️</span>
+  <span class="heart" style="left: 55%; animation-delay: 3s;">💘</span>
+  <span class="heart" style="left: 70%; animation-delay: 4s;">❤️</span>
+  <span class="heart" style="left: 85%; animation-delay: 5s;">💖</span>
+
+  <!-- Proposal Card -->
+  <div class="card" id="card">
+    <h1>Will You Be My Valentine? 💕</h1>
+    <p>
+      I may not say it every day,  
+      but you mean the world to me 💖
+    </p>
+
+    <div class="buttons">
+      <button class="yes" onclick="acceptLove()">Yes 💘</button>
+      <button class="no" onmouseover="runAway()">No 🙈</button>
+    </div>
+  </div>
+
+  <!-- Success Message -->
+<div class="card success" id="success">
+  <h1>Yayyy! 🥰💖</h1>
+  <p>You just made my heart the happiest ❤️</p>
+
+  <div class="love-you">
+    Love you <span>Motu</span> ❤️
+  </div>
+   <button class="memories-btn" onclick="openMemories()">
+    Our 2 Years ❤️
+  </button>
+</div>
+<div class="memories" id="memories">
+  <div class="memories-box">
+    <h2>Our 2 Years 💕</h2>
+<div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+    <div class="memory"> <img src="images/memory-1.jpeg" width="100px" alt="Memory 1" />
+  <p>📅 The day we started — butterflies everywhere 🦋</p></div>
+    <div class="memory"> <img src="images/memory-2.jpeg" width="100px" alt="Memory 2" />
+  <p>😂 Our silly fights & even sillier patch-ups</p></div>
+    <div class="memory"> <img src="images/memory-3.jpeg" width="100px" alt="Memory 3" />
+  <p>📞 Endless calls & “one last call” nights</p></div>
+    <div class="memory"> <img src="images/memory-4.jpeg" width="100px" alt="Memory 4" />
+  <p>💖 You became my safe place</p></div>
+  </div>
+
+    <div class="close" onclick="closeMemories()">Close ✨</div>
+  </div>
+</div>
+
+
+  <script>
+    function runAway() {
+      const noBtn = document.querySelector(".no");
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    function acceptLove() {
+      document.getElementById("card").style.display = "none";
+      document.getElementById("success").style.display = "block";
+    }
+  </script>
+<script>
+  function openMemories() {
+    document.getElementById("memories").style.display = "flex";
+  }
+
+  function closeMemories() {
+    document.getElementById("memories").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
